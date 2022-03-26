@@ -19,10 +19,10 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body p-0">
-                <div class="table-responsive--md table-responsive">
+                <div class="table-responsive-md table-responsive ">
                     <table class="table ">
-                  <thead class="bg-primary text-white">
-                    <tr>
+                  <thead class="bg-primary text-white border-0">
+                    <tr class="border-0">
                       <th scope="col">STT</th>
                       <th scope="col">Thể loại</th>
                       <th scope="col">Tình trạng</th>
@@ -35,11 +35,11 @@
                                     <td data-label="@lang('Sl')">{{ $key + 1 }}</td>
                                     <td data-label="@lang('Name')">{{ __($category->name) }}</td>
                                     <td data-label="@lang('Status')">
-                                        <div class="__status_switch"  data-status="{{ $category->status }}" data-id="{{ $category->id }}">
-                                        </div>
+                                         <div class="__status_switch form-check form-switch" data-action="{{ route('admin.category.status.change', $category->id) }}" data-status="{{ $category->status }}" data-id="{{ $category->id }}">
+                                    </div>
                                     </td>
                                     <td data-label="@lang('Action')">
-                                        <button type="button" class=" btn-primary edit" data-toggle="tooltip" data-category="{{ json_encode($category->only('id', 'name')) }}" data-original-title="Edit">
+                                        <button type="button" class="icon-btn edit" data-toggle="tooltip" data-category="{{ json_encode($category->only('id', 'name')) }}" data-original-title="Edit">
                                             <i class="fa-solid fa-pen"></i>
                                         </button>
                                     </td>
@@ -65,12 +65,13 @@
       </div>
     </section>
 
-    <div id="modal" class="modal  fade"  tabindex="-1" role="dialog">
+@push('modal')
+    <div id="modal" class="modal fade"  tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">@lang('New Category')</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button " class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -84,14 +85,16 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn--dark" data-dismiss="modal">@lang('Cancel')</button>
-                        <button type="submit" class="btn btn--primary">@lang('Submit')</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@lang('Cancel')</button>
+                        <button type="submit" class="btn btn-primary">@lang('Submit')</button>
                     </div>
                 </form>
 
             </div>
         </div>
-    </div>
+    </div> 
+
+@endpush
 
 
 
@@ -106,7 +109,7 @@
     (function($) {
         $('.edit').on('click', function() {
             var modal = $('#modal');
-            let action = "";
+            let action = "{{ route('admin.category.update', ':id') }}";
             let category = JSON.parse($(this).attr('data-category'));
             $(modal).find('.modal-title').text("@lang('Edit Category')")
             $(modal).find('button[type=submit]').text("@lang('Update')")
@@ -118,7 +121,7 @@
 
         $('.add').on('click', function() {
             var modal = $('#modal');
-            let action = "";
+            let action = "{{ route('admin.category.store') }}";
             $(modal).find('form').trigger("reset");
             $(modal).find('form').attr('action', action);
             $(modal).find('.modal-title').text("@lang('New Category')")
@@ -128,6 +131,9 @@
     })(jQuery);
 
 </script>
+
+
+<script src="{{ asset('assets/admin/js/status-switch.js') }}"></script>
 
 @endpush
 

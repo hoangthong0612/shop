@@ -1075,3 +1075,27 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+.icon-btn {
+    padding: 3px 8px;
+    background-color: #7367f0;
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+
+}
+
+.bg-primary {
+  background-color: #7367f0!important;
+}
+
+.btn-primary {
+  background-color: #7367f0!important;
+}
+

@@ -2,14 +2,38 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="index.html">
+      <li class="nav-item  " >
+        <a class="nav-link {{menuActive('admin.dashboard')}} " href="{{route('admin.dashboard')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
+      <li class="nav-item" >
+        <a class="nav-link {{menuActive('admin.category.index')}}" href="{{route('admin.category.index')}}">
+          <i class="bi bi-layers"></i>
+          <span>Doanh mục</span>
+        </a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link {{menuActive('admin.posts.index')}}" href="{{route('admin.posts.index')}}">
+          <i class="bi bi-pin-angle"></i>
+          <span>Bài viết</span>
+        </a>
+      </li>
+
+      <li class="nav-heading">Setting</li>
+
+      <li class="nav-item" >
+        <a class="nav-link {{menuActive('admin.seo')}}" href="{{route('admin.seo')}}">
+          <i class="bi bi-globe"></i>
+          <span>Seo</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item active">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>

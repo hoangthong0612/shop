@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\{adminController, categoryController};
+use App\Http\Controllers\admin\{adminController, categoryController, postController};
 use App\Http\Controllers\admin\auth\{loginController};
 
 /*
@@ -37,8 +37,22 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
         Route::name('category.')->prefix('category')->group(function () {
             Route::get('/', [categoryController::class, 'index'])->name('index');
+            Route::post('/store', [categoryController::class, 'store'])->name('store');
+            Route::get('/status/change/{id}', [categoryController::class ,'changeStatus'])->name('status.change');
+            Route::post('/update/{id}', [categoryController::class ,'update'])->name('update');
             
         });
+        Route::name('posts.')->prefix('posts')->group(function () {
+            Route::get('/', [postController::class, 'index'])->name('index');
+            Route::post('/store', [postController::class, 'store'])->name('store');
+            Route::get('/status/change/{id}', [postController::class ,'changeStatus'])->name('status.change');
+            Route::post('/update/{id}', [postController::class ,'update'])->name('update');
+            
+        });
+
+        Route::get('/Seo', function(){
+
+        })->name('seo');
     });
     
 });
